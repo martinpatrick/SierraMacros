@@ -3,10 +3,12 @@ A set of macro functions in AutoIt that automate receipt and copy cataloging fun
 
 The scripts here are provided without warranty, and support from Miami University Libraries is not available. These files are provided in order to form the core basis of a macro set for your needs only.
 
+Images for the scripts are available from https://drive.google.com/folderview?id=0B9tq9izsUeT-fjlPWW1fdGl5QlBTT2l4R2twejNtdjRxOXMwcy0tWmpmZGRZdnZWMmRBTU0&usp=sharing
+
 Folder structure:
 SierraMacros/images -- contains images needed for the GUI box
 SierraMacros/Scripts -- contains the scripts and the .exe compiled versions
-SierraMacros/SierraGui.exe -- the GUI program that users interact with
+SierraMacros/SierraGui.exe -- the GUI program that users interact with (scripts must be in SierraMacros/scripts currently as that's how they're referenced in the gui.exe)
 
 This code was originally developed by Becky Yoose. After that it was maintained by Jason Paul Michel. The most recent contributions and updates were applied by Martin Patrick.
 
