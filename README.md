@@ -1,5 +1,10 @@
 # SierraMacros
-A set of macro functions in AutoIt that automate receipt and copy cataloging functions for libraries using III Sierra on Windows 8 and above.
+A set of macro functions in AutoIt that automate receipt and copy cataloging functions for libraries using III Sierra on Windows 8 and above. Scripts must be compiled by the AutoIt editor to function.
+
+Folder structure:
+SierraMacros/images -- contains images needed for the GUI box
+SierraMacros/Scripts -- contains the scripts and the .exe compiled versions
+SierraMacros/SierraGui.exe -- the GUI program that users interact with
 
 This code was originally developed by Becky Yoose. After that it was maintained by Jason Paul Michel. The most recent contributions and updates were applied by Martin Patrick.
 
