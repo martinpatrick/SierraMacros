@@ -792,6 +792,8 @@ If $PRINT = 1 Then
 	MsgBox(0, "Print record", "The record has been printed." & @CR & "Attach print-out to item.")
 EndIf
 
+
+
 ;START STORING VARIABLES
 
 _StoreVar("$approval")
@@ -848,8 +850,15 @@ ElseIf $REVIEW = 0 Or $LOCATION = "mdli" Or $LOCATION = "mdr" Or $LOCATION = "md
 Else
 	$ccat = 1
 	_StoreVar("$ccat")
-	MsgBox(0, "Order notes", "Please make a mental note of any relevant order record notes!")
-	Run("BibRecord.exe");moves onto bib record function
+	;MsgBox(0, "Order notes", "Please make a mental note of any relevant order record notes!")
+	$decide = MsgBox(4, "Bib Record?", "Ready to move on to the Bib Record?")
+	If $decide = 6 Then
+		Run("BibRecord.exe");moves onto bib record function
+		Exit
+	Else
+		Exit
+	EndIf
+
 EndIf
 
 
