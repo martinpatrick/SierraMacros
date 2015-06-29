@@ -212,54 +212,9 @@ EndSwitch
 _StoreVar("$C_INI")
 ;end user initial creation
 
-If $nondlc = 1 Then ;this is the old Item Create - non DLC.exe routine
-	;prep fund variable for processing
-	If WinExists("[REGEXPTITLE:[b][0-9ax]{7,8}; CLASS:SunAwtFrame]") Then
-	WinActivate("[REGEXPTITLE:[b][0-9ax]{7,8}; CLASS:SunAwtFrame]")
-	WinWaitActive("[REGEXPTITLE:[b][0-9ax]{7,8}; CLASS:SunAwtFrame]")
-Else
-	MsgBox(64, "Sierra record", "Please open the bib record.")
-	Exit
-EndIf
-$FUND = StringLeft($FUND, 5)
-$FUND = StringStripWS($FUND, 8)
-If $FUND <> "multi" Then
-	$FUND_M = StringLeft($FUND, 1)
-EndIf
-Sleep(0200)
-
-$STATUS = "i" ;default status
-If $FORM = "w" Then
-	$ITYPE = 12
-EndIf
-;MsgBox(0, "itype", $ITYPE)
-
-
-Select
-	Case $FUND = "4a" ;textbook reserve fund
-		$LOCATION = $LOCATION
-		$ITYPE = "56"
-		$LABELLOC = "King Textbook Reserve"
-		$STATUS = "l"
-	Case $FUND = "multi" ;default to ccat
-		$LOCATION = "ccat"
-	Case $FUND_M = "m" ;middletown ccat
-		$LOCATION = "mcat"
-	Case $LOCATION = "none" ;added vol/copy item location
-		$LOCATION = "none"
-	Case $LOCATION = "game1" ;game lab location
-		$LOCATION = "ccat"
-		$ITYPE = "21"
-		$LABELLOC = "GameLab"
-		$ICODE1_1 = "88"
-	Case Else
-		$LOCATION = "ccat" ;default location
-EndSelect
-
-EndIf
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- ;if $nondlc = 0 then
+if $nondlc = 0 then
 	$approval = "1"
 If WinExists("[REGEXPTITLE:[b][0-9ax]{7,8}; CLASS:SunAwtFrame]") Then
 	WinActivate("[REGEXPTITLE:[b][0-9ax]{7,8}; CLASS:SunAwtFrame]")
@@ -846,6 +801,50 @@ EndIf
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; SAVE RECORD AND CREATE NEW ITEM RECORD
+
+Else
+	If WinExists("[REGEXPTITLE:[b][0-9ax]{7,8}; CLASS:SunAwtFrame]") Then
+	WinActivate("[REGEXPTITLE:[b][0-9ax]{7,8}; CLASS:SunAwtFrame]")
+	WinWaitActive("[REGEXPTITLE:[b][0-9ax]{7,8}; CLASS:SunAwtFrame]")
+Else
+	MsgBox(64, "Sierra record", "Please open the bib record.")
+	Exit
+EndIf
+$FUND = StringLeft($FUND, 5)
+$FUND = StringStripWS($FUND, 8)
+If $FUND <> "multi" Then
+	$FUND_M = StringLeft($FUND, 1)
+EndIf
+Sleep(0200)
+
+$STATUS = "i" ;default status
+If $FORM = "w" Then
+	$ITYPE = 12
+EndIf
+;MsgBox(0, "itype", $ITYPE)
+
+
+Select
+	Case $FUND = "4a" ;textbook reserve fund
+		$LOCATION = $LOCATION
+		$ITYPE = "56"
+		$LABELLOC = "King Textbook Reserve"
+		$STATUS = "l"
+	Case $FUND = "multi" ;default to ccat
+		$LOCATION = "ccat"
+	Case $FUND_M = "m" ;middletown ccat
+		$LOCATION = "mcat"
+	Case $LOCATION = "none" ;added vol/copy item location
+		$LOCATION = "none"
+	Case $LOCATION = "game1" ;game lab location
+		$LOCATION = "ccat"
+		$ITYPE = "21"
+		$LABELLOC = "GameLab"
+		$ICODE1_1 = "88"
+	Case Else
+		$LOCATION = "ccat" ;default location
+EndSelect
+EndIf
 _SendEx("^s")
 Sleep(0100)
 _SendEx("^s")
@@ -862,7 +861,7 @@ Sleep(0200)
 _SendEx("o")
 Sleep(0200)
 _SendEx("i")
-Sleep(0200)
+Sleep(0600)
 
 ;_SendEx("i")
 ;Sleep(0200)
@@ -1001,7 +1000,7 @@ If $REF = 1 Then
 	_SendEx("o")
 EndIf
 
-If $ccat = 1 Then
+If $LOCATION = "ccat" Then
 	sleep(0100)
 	_SendEx("i")
 Else
@@ -1025,7 +1024,7 @@ Sleep(0100)
 _SendEx("^{END}")
 Sleep(0300)
 
-If $nondlc = 1 Then
+If $barcode = "" Then
 	_SendEx("{ENTER}")
 	Sleep(0100)
 	_SendEx("b{TAB}")
