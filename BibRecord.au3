@@ -1,7 +1,7 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Icon=images\autoiticon.ico
 #AutoIt3Wrapper_UseX64=n
-#AutoIt3Wrapper_Res_Fileversion=0.0.0.24
+#AutoIt3Wrapper_Res_Fileversion=0.0.0.26
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_requestedExecutionLevel=asInvoker
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
@@ -910,5 +910,9 @@ Else
 
 	_StoreVar("$nondlc")
 
-	Run("ItemCreate.exe")
+
+	;prep fund variable for processing
+
+Run("ItemCreate.exe")
+
 EndIf
